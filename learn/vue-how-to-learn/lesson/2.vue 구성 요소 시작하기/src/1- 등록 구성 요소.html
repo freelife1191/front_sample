@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1- 등록 구성 요소</title>
+  <!--<link rel="stylesheet" href="./lesson.css">-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="lesson1">
+    <h3>vue예제1：글로벌 등록</h3>
+    <table-title></table-title>
+    <table border="1">
+      <th is="table-item"></th>
+      <th is="table-item"></th>
+      <th is="table-item"></th>
+    </table>
+  </div>
+  <div id="lesson2">
+    <h3>vue예제2：부분 등록</h3>
+    <table-title></table-title>
+    <table-child></table-child>
+  </div>
+  <div id="lesson3">
+    <h3>vue예제3：구성 요소의 로컬 등록</h3>
+    <table-father></table-father>
+  </div>
+  <script src="./1-vue.js"></script>
+</body>
+
+</html>

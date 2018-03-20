@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-계산 속성</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>속성 계산 {{ message }}</p>
+        <p>이것은 계산 된 것입니다. {{ capitalize }}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world!'
+            },
+            computed: {
+                capitalize: {
+                    get: function () {
+                        // 'this' 指向 app 实例
+                        return this.message.toUpperCase();
+                    },
+                    set: function (newValue) {
+                        this.message = newValue;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

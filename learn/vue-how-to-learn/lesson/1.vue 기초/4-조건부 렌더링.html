@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4-조건부 렌더링</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="seen===1">이제 너는 나를 본다.</p>
+        <p v-else-if="seen===0">나를 보지 못하는 척 할 수있어.</p>
+        <p v-else>너는 나를 정말로 볼 수 없어.</p>
+        <button v-on:click="seen=1">텍스트 표시</button>
+        <button v-on:click="seen=0">텍스트 숨기기</button>
+        <button v-on:click="seen=''">정말 숨겨진 텍스트</button>
+        <hr>
+        <p class="sky">>키 스위치가없는 조건 :</p>
+        <div v-if="loginType1 === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+        </div>
+        <div v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </div>
+        <button v-on:click="loginType1 = loginType1 === 'username' ? '' : 'username'">입력 상자 전환</button>
+        <hr>
+        <p class="sky">>주요 조건으로 전환 :</p>
+        <div v-if="loginType2 === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="username-input">
+        </div>
+        <div v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="email-input">
+        </div>
+        <button v-on:click="loginType2 = loginType2 === 'username' ? '' : 'username'">입력 상자 전환</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                seen: 1,
+                loginType1: 'username',
+                loginType2: ''
+            }
+        })
+    </script>
+</body>
+
+</html>

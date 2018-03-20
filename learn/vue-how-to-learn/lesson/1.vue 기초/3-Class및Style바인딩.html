@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3-Class및Style바인딩</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-bind:class="{ active: isActive, 'danger': hasError }">개체를 클래스에 바인딩 {{ message }}</p>
+        <p :class="classObj">개체 속성에 바인딩 된 클래스 {{ message }}</p>
+        <p :class="classComp">속성 계산에 속하는 클래스 {{ message }}</p>
+        <p :class="[activeClass, hasError ? errorClass : '']">배열에 바인드 된 클래스 {{ message }}</p>
+        <hr>
+        <p v-bind:style="{ color: activeColor }">바운드 스타일 {{ message }}</p>
+        <p :style="styleObj">객체 속성에 스타일 바인딩 {{ message }}</p>
+        <p :style="styleComp">스타일 속성의 계산에 제한이 있음 {{ message }}</p>
+        <p :style="[styleObj,anotherStyleObj]">배열에 바인딩 스타일 {{ message }}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // 클래스 속성 설정
+                message: 'hello world!',
+                isActive: true,
+                hasError: false,
+                classObj: {
+                    active: false,
+                    danger: true
+                },
+                activeClass: 'active',
+                errorClass: 'danger',
+                // 속성의 스타일 설정
+                activeColor: 'blue',
+                styleObj: {
+                    color: 'purple',
+                    fontSize: '26px'
+                },
+                anotherStyleObj: {
+                    backgroundColor: 'pink',
+                    padding: '5px'
+                }
+            },
+            computed: {
+                classComp: function () {
+                    return {
+                        active: this.isActive && !this.hasError,
+                        'danger': this.hasError && !this.isActive
+                    }
+                },
+                styleComp: function () {
+                    return {
+                        color: this.isActive ? 'orange' : 'black'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

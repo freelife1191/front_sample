@@ -1,0 +1,24 @@
+{
+  "list": [
+    {
+      "todo": "종료대기1",
+      "done": false
+    },
+    {
+      "todo": "종료대기2",
+      "done": false
+    },
+    {
+      "todo": "종료대기3",
+      "done": false
+    },
+    {
+      "todo": "종료대기4",
+      "done": false
+    },
+    {
+      "todo": "종료대기5",
+      "done": false
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7-폼 컨트롤 바인딩</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--한 줄 텍스트-->
+        <p class="sky">>당신이 입력하는 것은 : {{ message }}</p>
+        <input v-model="message">
+        <hr>
+        <!--여러 줄 텍스트-->
+        <p class="sky">>여러 줄 텍스트를 입력합니다.:</p>
+        <p style="white-space: pre">{{ texts }}</p>
+        <textarea v-model.lazy.trim="texts" placeholder="여러 줄 텍스트는 문제가되지 않습니다."></textarea>
+        <hr>
+        <!--체크 박스 확인란-->
+        <p class="sky">>단일 확인란, 논리 값：</p>
+        <input type="checkbox" id="checkbox1" v-model="checked">
+        <label for="checkbox1">{{ checked }}</label>
+        <hr>
+        <p class="sky">>단일 확인란, 바인딩 값：</p>
+        <input type="checkbox" id="checkbox2" v-model="checkValue" v-bind:true-value="checka" v-bind:false-value="checkb">
+        <label for="checkbox2">{{ checkValue }}</label>
+        <hr>
+        <p class="sky">>동일한 배열에 바인딩 된 여러 확인란：</p>
+        <input type="checkbox" id="libai" value="리 바이" v-model="checkedNames">
+        <label for="libai">리 바이</label>
+        <input type="checkbox" id="lanlingwang" value="왕 링링" v-model="checkedNames">
+        <label for="lanlingwang">왕 링링</label>
+        <input type="checkbox" id="mike" value="마르코 폴로" v-model="checkedNames">
+        <label for="mike">마르코 폴로</label>
+        <p>선택된 영웅: {{ checkedNames }}</p>
+        <hr>
+        <!--라디오-->
+        <p class="sky">>라디오 버튼：</p>
+        <input type="radio" id="one" value="디아 찬" v-model="picked">
+        <label for="one">디아 찬</label>
+        <br>
+        <input type="radio" id="two" v-bind:value="radio1" v-model="picked">
+        <label for="two">Riboud</label>
+        <br>
+        <span>너는 선택했다.{{ picked }}</span>
+        <hr>
+        <!--选择列表select-->
+        <p class="sky">>선택 목록：</p>
+        <select v-model="selected">
+            <option>암살자</option>
+            <option>전사</option>
+            <option>석사</option>
+            <option>보조</option>
+        </select>
+        <span>직업 선택: {{ selected }}</span>
+        <hr>
+        <p class="sky">>다중 선택 목록：</p>
+        <select v-model="selList" multiple style="width: 150px">
+            <option>군대 깨기</option>
+            <option>눈물 피</option>
+            <option>부흥</option>
+        </select>
+        <br>
+        <span>선택된 장비: {{ selList }}</span>
+        <hr>
+        <p class="sky">>동적 옵션：</p>
+        <select v-model="selText">
+            <option v-for="option in options" v-bind:value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>선택된 텍스트 : {{ selText }}</span>
+        <hr>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                texts: '',
+                checked: false,
+                checkValue: null,
+                checka: '체크 됨',
+                checkb: '선택되지 않음',
+                checkedNames: [],
+                picked: 'Riboud',
+                radio1: 'Riboud',
+                selected: null,
+                selList: [],
+                selText: '빅 조',
+                options: [{
+                        text: '암살자',
+                        value: '징기'
+                    },
+                    {
+                        text: '보조',
+                        value: '빅 조'
+                    },
+                    {
+                        text: '전사',
+                        value: '어느'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

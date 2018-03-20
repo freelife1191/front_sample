@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3-동적 구성 요소</title>
+  <!--<link rel="stylesheet" href="./lesson.css">-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="lesson1">
+    <lesson-content>
+      <h3 slot="header">vue예제</h3>
+      <input v-model="newName" placeholder="새 이름">
+      <input v-model="newBirth" placeholder="새해 탄생">
+
+      <table-add v-bind:add-name="newName" v-bind:add-birth="newBirth" v-on:table-add="peopleAdd"></table-add>
+      <!--구성 요소 캐싱-->
+      <keep-alive include="child-list">
+        <component :is="viewComp" text="이름" another-text="생년월"></component>
+      </keep-alive>
+
+      <!--동적 구성 요소는 테이블에 배치 할 수 없으며 이러한 요소를 선택할 수 없습니다.-->
+      <component :is="viewComp" v-for="(person, index) in people" :text="person.name" :another-text="person.birth" :key="index"></component>
+
+      <table-del v-on:table-delete="peopleDel">
+        <span>{{lastName}}</span>
+      </table-del>
+
+      <button @click="changeComp">구성 요소 변경</button>
+    </lesson-content>
+  </div>
+
+  <script src="./3-vue.js"></script>
+</body>
+
+</html>

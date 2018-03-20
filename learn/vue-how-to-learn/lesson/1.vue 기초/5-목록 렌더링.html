@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5-목록 렌더링</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p class="sky">>배열 목록</p>
+        <button type="" v-on:click="todos.push({text: '추가 목록'});">push</button>
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+
+        <p class="sky">>개체 목록</p>
+        <ul>
+            <li v-for="(value,key,index) of object" v-bind:key="index">
+                {{ index }}. {{ key }} : {{ value }}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todos: [{
+                        text: '학습 JavaScript'
+                    },
+                    {
+                        text: '학습 Vue'
+                    },
+                    {
+                        text: '전체 프로젝트 완료'
+                    }
+                ],
+                object: {
+                    FirstName: 'John',
+                    LastName: 'Doe',
+                    Age: 30
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

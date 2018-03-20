@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4-라이프 사이클</title>
+  <!--<link rel="stylesheet" href="./lesson.css">-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>{{ message }}</p>
+    <p @click="foo">{{ message | filter }}</p>
+    <p>{{ compute }}</p>
+    <comp-demo></comp-demo>
+  </div>
+
+  <script type="text/javascript">
+    Vue.component('comp-demo', {
+      template: '<p>{{demoComp}}</p>',
+      data: function() {
+        return ({
+          demoComp: '전역으로 등록된 구성요소!'
+        })
+      },
+      beforeCreate: function() {
+        console.log("%c%s", "color:blue", '========사전 구성 요소 상태========');
+      },
+      created: function() {
+        console.log("%c%s", "color:blue", '========구성 요소 생성 완료 상태========');
+      },
+      beforeMount: function() {
+        console.log("%c%s", "color:blue", '========상태로드 전 구성 요소========');
+      },
+      mounted: function() {
+        console.log("%c%s", "color:blue", '========구성 요소 마운트 완료 상태========');
+      },
+    })
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: "텍스트 속성"
+      },
+      computed: {
+        compute: function() {
+          return ('속성 계산');
+        }
+      },
+      filters: {
+        filter: function(value) {
+          console.log('필터가 생성되었습니다.');
+          return (value + '필터');
+        }
+      },
+      methods: {
+        foo: function() {
+          return ('방법 내용');
+        }
+      },
+      beforeCreate: function() {
+        console.group('beforeCreate 사전 구성요소 생성===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "message: " + this.message);
+        console.log("%c%s", "color:red", "computed: " + this.compute);
+        console.log("%c%s", "color:red", "method: " + this.foo());
+      },
+      created: function() {
+        console.group('created 생성 된 상태===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "message : " + this.message);
+        console.log("%c%s", "color:red", "computed: " + this.compute);
+        console.log("%c%s", "color:red", "method: " + this.foo());
+      },
+      beforeMount: function() {
+        console.group('beforeMount 사전 장착 상태===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message : " + this.message);
+        console.log("%c%s", "color:red", "computed: " + this.compute);
+        console.log("%c%s", "color:red", "method: " + this.foo());
+      },
+      mounted: function() {
+        console.group('mounted 마운트 종료 상태===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message: " + this.message);
+        console.log("%c%s", "color:red", "computed: " + this.compute);
+        console.log("%c%s", "color:red", "method: " + this.foo());
+      },
+      beforeUpdate: function() {
+        console.group('beforeUpdate 사전 업데이트 상태===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message: " + this.message);
+      },
+      updated: function() {
+        console.group('updated 업데이트 완료 상태===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message: " + this.message);
+      },
+      beforeDestroy: function() {
+        console.group('beforeDestroy 전에 파괴되었습니다.===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message: " + this.message);
+      },
+      destroyed: function() {
+        console.group('destroyed 파괴 완료 상태 ===============》');
+        console.log("%c%s", "color:red", "el:");
+        console.log(this.$el);
+        console.log("%c%s", "color:red", "data:");
+        console.log(this.$data);
+        console.log("%c%s", "color:red", "app콘텐츠: ");
+        console.log(app);
+        console.log("%c%s", "color:red", "message: " + this.message);
+      }
+    })
+  </script>
+</body>
+
+</html>

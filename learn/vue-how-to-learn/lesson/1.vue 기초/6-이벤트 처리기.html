@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6-이벤트 처리기</title>
+    <link rel="stylesheet" href="./lesson.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <p class="sky">>방법 프로세서</p>
+        <button v-on:click="eventObj">이벤트 객체</button>
+        <p class="sky">>인라인 프로세서</p>
+        <button v-on:click="say('hi')">Say hi</button>
+        <p class="sky">>이벤트 수정 자</p>
+        <div v-on:click="say('father')" :style="{border:'1px solid #000'}">
+            부모 요소
+            <button @click="say('child',$event)">자식 요소</button>
+            <button @click.stop="say('stop-child')">버블 링 자식 요소 차단</button>
+        </div>
+        <p class="sky">>키 수정 자</p>
+        <input v-on:keyup.enter="say('Enter를 누르기 만하면됩니다.')">
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                eventObj: function (event) {
+                    this.message = '<' + event.target.tagName + '>' + this.message
+                },
+                say: function (message, event) {
+                    if (event) message = message + event.target.tagName;
+                    alert(message);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
