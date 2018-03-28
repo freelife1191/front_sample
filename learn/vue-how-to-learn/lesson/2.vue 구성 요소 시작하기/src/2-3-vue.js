@@ -5,7 +5,7 @@ Vue.component('lesson-content',{
         <slot name="header">\
         </slot>\
       </header>\
-      <slot>\
+      <slot name="lastName">\
       </slot>\
     </div>\
   '
@@ -28,7 +28,7 @@ Vue.component('table-add', {
 })
 
 Vue.component('table-del', {
-  template: '<button v-on:click="tableDelete">삭제<slot>마지막 하나</slot></button>',
+  template: '<button v-on:click="tableDelete">삭제<slot></slot></button>',
   methods: {
     tableDelete: function () {
       this.$emit('table-delete');
@@ -50,7 +50,9 @@ new Vue({
   },
   computed: {
     lastName: function () {
+      console.log(this.people.length);
       if (this.people.length > 0) {
+        console.log(this.people[this.people.length - 1]);
         var last = this.people[this.people.length - 1];
         return last.name;
       }

@@ -16,8 +16,9 @@
     <lesson-content>
       <!--명명 된 slot 슬롯-->
       <h3 slot="header">vue예제：slot배포</h3>
-      <input v-model="newName" placeholder="새 이름">
-      <input v-model="newBirth" placeholder="새해 탄생">
+      <div slot="lastName">
+      <input v-model="newName" placeholder="추가할 이름">
+      <input v-model="newBirth" placeholder="태어난 년도">
       <table-add v-bind:add-name="newName" v-bind:add-birth="newBirth" v-on:table-add="peopleAdd"></table-add>
       <table border="1">
         <thead>
@@ -28,8 +29,9 @@
       </table>
       <table-del v-on:table-delete="peopleDel">
         <!--익명 slot 슬롯-->
-        <span>{{lastName}}</span>
+        <span>-{{lastName}}</span>
       </table-del>
+    </div>
       <!--<table-del v-on:click.native="peopleDel"></table-del>-->
 
     </lesson-content>
